@@ -14,8 +14,8 @@
     <Description>A comprehensive .NET wrapper for Google Maps Platform Core APIs including Address Validation, Geocoding, Places, Routes, and more.</Description>
     <PackageTags>GoogleMaps;Maps;Geocoding;Places;Routes;AddressValidation;Google</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/dotnet/dotnet-googlemaps</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/dotnet/dotnet-googlemaps</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/amareabewachanie/dotnet-googlemaps</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/amareabewachanie/dotnet-googlemaps</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
