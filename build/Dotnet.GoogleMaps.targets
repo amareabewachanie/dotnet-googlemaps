@@ -1,0 +1,35 @@
+<Project>
+  <!-- This target runs after package installation to add GoogleMaps configuration to appsettings.json -->
+  <Target Name="AddGoogleMapsAppSettings" AfterTargets="Build" Condition="'$(EnableGoogleMapsAppSettings)' != 'false'">
+    <PropertyGroup>
+      <AppSettingsPath>$(MSBuildProjectDirectory)\appsettings.json</AppSettingsPath>
+      <TemplatePath>$(MSBuildThisFileDirectory)..\contentFiles\any\any\appsettings.GoogleMaps.template.json</TemplatePath>
+    </PropertyGroup>
+    
+    <!-- Message for user -->
+    <Message Text="Dotnet.GoogleMaps: Checking appsettings.json configuration..." Importance="normal" />
+    
+    <!-- Check if appsettings.json exists -->
+    <PropertyGroup Condition="Exists('$(AppSettingsPath)')">
+      <AppSettingsExists>true</AppSettingsExists>
+    </PropertyGroup>
+    
+    <!-- Read appsettings.json content if it exists -->
+    <ReadLinesFromFile File="$(AppSettingsPath)" Condition="Exists('$(AppSettingsPath)')">
+      <Output TaskParameter="Lines" ItemName="AppSettingsLines" />
+    </ReadLinesFromFile>
+    
+    <!-- Check if GoogleMaps section already exists -->
+    <PropertyGroup>
+      <AppSettingsContent>@(AppSettingsLines)</AppSettingsContent>
+      <HasGoogleMapsSection Condition="$(AppSettingsContent.Contains('&quot;GoogleMaps&quot;'))">true</HasGoogleMapsSection>
+    </PropertyGroup>
+    
+    <!-- Show message if section already exists -->
+    <Message Text="Dotnet.GoogleMaps: GoogleMaps section already exists in appsettings.json. Skipping..." Importance="normal" Condition="'$(HasGoogleMapsSection)' == 'true'" />
+    
+    <!-- Show message if section needs to be added -->
+    <Message Text="Dotnet.GoogleMaps: Please add the GoogleMaps configuration section to your appsettings.json. See appsettings.GoogleMaps.template.json for an example." Importance="high" Condition="'$(AppSettingsExists)' == 'true' AND '$(HasGoogleMapsSection)' != 'true'" />
+    <Message Text="Dotnet.GoogleMaps: Please create appsettings.json and add the GoogleMaps configuration section. See appsettings.GoogleMaps.template.json for an example." Importance="high" Condition="'$(AppSettingsExists)' != 'true'" />
+  </Target>
+</Project>
