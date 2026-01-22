@@ -48,3 +48,7 @@ artifacts/
 
 # Mac
 .DS_Store
+
+# Packaging instructions (for personal use, not part of package)
+GITHUB_SETUP.md
+NUGET_PUBLISHING.md
